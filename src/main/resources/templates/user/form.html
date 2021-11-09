@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head th:include = "_template :: head"></head>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Risque&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" th:href="@{~/css/useFormStyle.css}">
 </head>
+
 <body>
+
+	<header th:include = "_template :: header"></header>
+
+	<div th:include = "_template :: scriptBootstrap"></div>
 
 </body>
 </html>
