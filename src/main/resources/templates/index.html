@@ -2,10 +2,30 @@
 <html xmlns:th="http://thymeleaf.org">
 
 <head th:include = "_template :: head"></head>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{~/css/indexStyle.css}">
+</head>
 
 <body>
 
 	<header th:include = "_template :: header"></header>
+	
+	<div class="content d-flex flex-row justify-content-around">
+		<div class="textContent d-flex flex-column align-self-center justify-content-lg-between">
+			<h1>Save Food</h1>
+			<p>O desperdício de alimentos é um dos grandes problemas que agravam a situação da fome no mundo.<br>
+			Visando diminuir o descarte de alimentos vencidos no lixo e uma melhor gerenciamento de alimentos 
+			dentro de casa, desemvolvemos a aplicação SAVE FOOD que cadastra os produtos comprados e lista na ordem 
+			de vencimento deles. Assim o usuário saberá os alimentos que estão perto da data de validade para dar 
+			prioridade no consumo, diminuindo dessa forma o descarte desnecessário de alimentos domesticos.</p>
+			<div class="buttons d-flex flex-row justify-content-around">
+				<a class="btn buttonRegister" href="/user"> Cadastrar</a>
+				<a class="btn buttonLogin"> Login</a>
+			</div>
+		</div>
+		<img class="cozinheiro align-self-center" src="img/cozinhar.png">
+	</div>
 
 	<div th:include = "_template :: scriptBootstrap"></div>
 
