@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head th:include = "_template :: head"></head>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{~/css/errorStyle.css}">
+</head>
+
+<body>
+
+	<header th:include = "_template :: header"></header>
+	
+	<h1>Save Food</h1>
+		
+	<div class="alert error">
+		<h2>Um erro aconteceu</h2>
+		<p th:text="${message}"></p>
+	</div>
+
+	<div th:include = "_template :: scriptBootstrap"></div>
+
+</body>
+</html>

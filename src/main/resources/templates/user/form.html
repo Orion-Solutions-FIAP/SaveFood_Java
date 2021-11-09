@@ -5,12 +5,43 @@
 <head>
 	<meta charset="UTF-8">
 	<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Risque&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" th:href="@{~/css/useFormStyle.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{~/css/userFormStyle.css}">
 </head>
 
 <body>
 
 	<header th:include = "_template :: header"></header>
+	
+	<div class="container d-flex justify-content-center align-items-center">
+		<form>
+			<h2>Cadastro do Usuário</h2>
+			<div class="mb-3">
+			    <label for="name" class="form-label">Nome</label>
+			    <input type="text" class="form-control" id="name" name="name" >
+			    
+		  </div>
+		  <div class="mb-3">
+			    <label for="email" class="form-label">Email</label>
+			    <input type="email" class="form-control" id="email" name="email">
+			    
+		  </div>
+		  <div class="mb-3">
+			    <label for="exampleInputPassword1" class="form-label">Senha</label>
+			    <input type="password" class="form-control" id="password" name="password">
+			    
+		  </div>
+		  <div class="mb-3">
+			    <label for="repeatPassword" class="form-label">Repetir Senha</label>
+			    <input type="password" class="form-control" id="repeatPassword">
+			    
+		  </div>
+		  <div class="buttons d-flex flex-row justify-content-around">
+		  		<a class="btn buttonBack">Voltar</a>
+		  		<button type="submit" class="btn buttonSave">Salvar</button>
+		  </div>
+		  
+		</form>
+	</div>
 
 	<div th:include = "_template :: scriptBootstrap"></div>
 
