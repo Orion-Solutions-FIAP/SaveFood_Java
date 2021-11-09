@@ -15,5 +15,11 @@ public class UserController {
     public String save( User user ) {
         return "user/form";
     }
+	
+	@GetMapping("/login")
+    public String login() {
+        return "user/login";
+    }
+
 
 }
