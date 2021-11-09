@@ -1,10 +1,45 @@
 <!DOCTYPE html>
 <html>
+<head th:include = "_template :: head"></head>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Risque&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" th:href="@{~/css/productFormStyle.css}">
 </head>
 <body>
+	<header th:include = "_template :: header"></header>
+	
+	<div class="d-flex justify-content-around p-4">
+		<form>
+			<h2>Cadastro de Produto</h2>
+			<div class="mb-3">
+			    <label for="name" class="form-label">Nome</label>
+			    <input type="text" class="form-control" id="name" name="name" >
+			    
+		  </div>
+		  <div class="mb-3">
+			    <label for="date" class="form-label">Data de validade</label>
+			    <input type="date" class="form-control" id="date" name="date">
+			    
+		  </div>
+		  <div class="mb-3">
+			    <label for="quantity" class="form-label">Quantidade</label>
+			    <input type="text" class="form-control" id="quantity" name="quantity">
+			    
+		  </div>
+		  <div class="buttons d-flex flex-row justify-content-around">
+		  		<a class="btn buttonBack">Voltar</a>
+		  		<button type="submit" class="btn buttonSave">Salvar</button>
+		  </div>
+		  
+		</form>
+		
+		<img id="productsImage" class="col-sm-4" alt="Produtos Derivados" src="../../img/produtos.png">	
+		
+		
+		
+	</div>
 
+	<div th:include = "_template :: scriptBootstrap"></div>
 </body>
 </html>
