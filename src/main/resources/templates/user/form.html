@@ -13,21 +13,24 @@
 	<header th:include = "_template :: header"></header>
 	
 	<div class="container d-flex justify-content-center align-items-center">
-		<form>
+		<form action ="/user" method="post" th:object="${user}" id="register">
 			<h2>Cadastro do Usuário</h2>
 			<div class="mb-3">
 			    <label for="name" class="form-label">Nome</label>
-			    <input type="text" class="form-control" id="name" name="name" >
+			    <input type="text" class="form-control" id="name" name="name" th:field="*{name}">
+			    <span th:errors="*{name}"></span>
 			    
 		  </div>
 		  <div class="mb-3">
 			    <label for="email" class="form-label">Email</label>
-			    <input type="email" class="form-control" id="email" name="email">
+			    <input type="email" class="form-control" id="email" name="email" th:field="*{email}">
+			    <span th:errors="*{email}"></span>
 			    
 		  </div>
 		  <div class="mb-3">
 			    <label for="exampleInputPassword1" class="form-label">Senha</label>
-			    <input type="password" class="form-control" id="password" name="password">
+			    <input type="password" class="form-control" id="password" name="password" th:field="*{password}">
+			    <span th:errors="*{password}"></span>
 			    
 		  </div>
 		  <div class="mb-3">
@@ -36,7 +39,7 @@
 			    
 		  </div>
 		  <div class="buttons d-flex flex-row justify-content-around">
-		  		<a class="btn buttonBack">Voltar</a>
+		  		<a class="btn buttonBack" href="/">Voltar</a>
 		  		<button type="submit" class="btn buttonSave">Salvar</button>
 		  </div>
 		  

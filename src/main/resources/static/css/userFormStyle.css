@@ -28,6 +28,10 @@ label{
 	font-size: 1.5rem;
 }
 
+#register input{
+	border-radius: 15px;
+}
+
 .buttons{
 	margin-top: 2rem;
 }

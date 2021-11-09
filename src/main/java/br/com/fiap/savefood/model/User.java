@@ -29,6 +29,6 @@ public class User {
 	private String email;
 	
 	@NotBlank(message = "A senha é obrigatória. Favor digitar uma senha.")
-	private String pass;
+	private String password;
 
 }
