@@ -1,11 +1,19 @@
 package br.com.fiap.savefood.controller;
 
+
+import java.util.Optional;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -18,7 +26,8 @@ import br.com.fiap.savefood.repository.UserRepository;
 public class UserController {
 	
 	@Autowired
-    private UserRepository userRepository;
+
+	private UserRepository userRepository;
 	
 	@GetMapping
     public String save( User user ) {
@@ -26,7 +35,7 @@ public class UserController {
     }
 	
 	@GetMapping("/login")
-    public String login() {
+    public String login(User user) {
         return "user/login";
     }
 	
@@ -41,6 +50,23 @@ public class UserController {
         return "redirect:user/login";
         
     }
+
+	@PostMapping("/login")
+	public String login(User user, BindingResult result, RedirectAttributes redirect) throws Exception {
+		
+		Optional<User> login = userRepository.findByEmail(user.getEmail());
+		User userLogged = login.get();
+		
+		if(userLogged == null) {
+			throw new Exception("User not found");
+		}
+		
+		if(!userLogged.getPassword().equals(user.getPassword())) {
+			throw new Exception("Invalid user!");
+		}
+		
+		return "redirect:login";
+	}
 
 
 }
