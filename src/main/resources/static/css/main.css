@@ -8,3 +8,19 @@ body{
 	margin-top: 1rem;
 	margin-left: 1rem;
 }
+
+.icon{
+	width: 2rem;
+	height: 2rem;
+}
+
+.menu{
+	font-family: 'Risque', cursive;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: black;
+}
+
+.menu li{
+	padding: 0 3rem 0 0;
+}

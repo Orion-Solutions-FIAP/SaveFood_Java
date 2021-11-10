@@ -14,6 +14,35 @@
 		<header th:fragment="header">
 			<img class="logo" alt="Logo Save Food" src="../img/saveFood.png">
 		</header>
+		
+		<header th:fragment="menuHeader">
+			<div class="d-flex">
+				<img class="logo" alt="Logo Save Food" src="../img/saveFood.png">
+				
+				<nav class="navbar navbar-expand-lg navbar-light w-100 mx-5 menu">
+				  <div class="collapse navbar-collapse d-flex justify-content-between " id="navbarSupportedContent">
+				    
+				    <ul class="navbar-nav">
+				      <li class="nav-item">
+				        <a class="nav-link" href="#">Home</span></a>
+				      </li>
+				      <li class="nav-item">
+				        <a class="nav-link" href="#">Produtos Vencidos</a>
+				      </li>
+				      <li class="nav-item">
+				        <a class="nav-link" href="#">Cadastrar Produto</a>
+				      </li>
+				    </ul>
+				    
+				    <img class="icon" alt="Sair" src="../img/logout.png">
+				    
+				  </div>
+				</nav>
+				
+			</div>
+			
+			
+		</header>
 	
 		<div th:fragment="scriptBootstrap">
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" 
