@@ -37,7 +37,7 @@ public class Product {
 	private int quantity;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name = "ds_status")
+	@Column(name = "id_status")
 	private ProductStatus status;
 	
 	@ManyToOne
