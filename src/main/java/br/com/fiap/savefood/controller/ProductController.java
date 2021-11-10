@@ -20,6 +20,11 @@ public class ProductController {
         return "product/updateForm";
     }
 	
+	@GetMapping()
+    public String products() {
+        return "product/listAll";
+    }
+	
 	
 	
 }
