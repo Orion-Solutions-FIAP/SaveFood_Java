@@ -1,6 +1,6 @@
 package br.com.fiap.savefood.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +9,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
@@ -30,18 +31,17 @@ public class Product {
 	@Column(name = "nm_product")
 	private String name;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "dt_expiration")
-	private LocalDate expirationDate;
+	private Date expirationDate;
 	
-	@Column(name = "nr_quantity ")
+	@Column(name = "nr_quantity")
 	private int quantity;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name = "id_status")
 	private ProductStatus status;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_user")
 	private User user;
 
 }
