@@ -1,3 +1,11 @@
 .title{
 	font-family: Patrick Hand;
 }
+
+td,th{
+	border-right: 3px solid black;
+}
+
+thead{
+	background-color: #C4C4C4;
+}
