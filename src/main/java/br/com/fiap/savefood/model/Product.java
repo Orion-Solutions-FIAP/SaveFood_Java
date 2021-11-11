@@ -12,7 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
@@ -28,7 +31,9 @@ public class Product {
 	@Column(name = "id_product")
 	private Long id;
 	
+	@NotBlank(message = "O nome é obrigatório")
 	@Column(name = "nm_product")
+	@Length(max = 50, min = 2)
 	private String name;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -36,6 +41,7 @@ public class Product {
 	private Date expirationDate;
 	
 	@Column(name = "nr_quantity")
+	@Min(1)
 	private int quantity;
 	
 	@Enumerated(EnumType.STRING)
@@ -44,54 +50,4 @@ public class Product {
 	@ManyToOne
 	private User user;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Date getExpirationDate() {
-		return expirationDate;
-	}
-
-	public void setExpirationDate(Date expirationDate) {
-		this.expirationDate = expirationDate;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-	public ProductStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(ProductStatus status) {
-		this.status = status;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	
-	
 }

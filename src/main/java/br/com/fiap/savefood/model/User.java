@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -29,6 +30,7 @@ public class User implements UserDetails {
 	private Long id;
 	
 	@NotBlank(message = "O nome é obrigatório. Favor digitar o nome.")
+	@Length(max = 50, min = 3)
 	private String name;
 	
 	@NotBlank(message = "O email é obrigatório. Favor digitar o email.")
@@ -36,41 +38,9 @@ public class User implements UserDetails {
 	private String email;
 	
 	@NotBlank(message = "A senha é obrigatória. Favor digitar uma senha.")
+	@Length(max = 1000, min = 3)
 	private String password;
 	
-	
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
