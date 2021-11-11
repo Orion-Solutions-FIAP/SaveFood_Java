@@ -16,7 +16,7 @@
 	<div class="d-flex justify-content-around" id="login">
 		<img id="barbecueImage" class="col-sm-4" alt="Homem preparando churrasco" src="../../img/churrasco.png">	
 
-		<form th:action="@{/user/login}" th:object="${user}" id="loginForm" class="col-sm-3 align-self-center" method="post">
+		<form th:action="@{/login}" th:object="${user}" id="loginForm" class="col-sm-3 align-self-center" method="post">
 		
 			<h1 class="text-center">Login</h1>
 			
@@ -27,7 +27,7 @@
 			
 			<div class="form-group pt-4">
 				<label for="pass" >Senha</label>
-				<input name="password" id="password" class="form-control" th:field="*{password}">
+				<input type ="password" name="password" id="password" class="form-control" th:field="*{password}">
 			</div>			
 			
 			<div class="d-flex justify-content-around mt-5" id="buttons">
