@@ -17,31 +17,22 @@
 	<table class="table">
 	  <thead>
 	    <tr>
-	      <th scope="col">#</th>
-	      <th scope="col">First</th>
-	      <th scope="col">Last</th>
-	      <th scope="col">Handle</th>
+	    	<th scope="col">Qtd</th>
+	      	<th scope="col">Nome</th>
+	      	<th scope="col">Data de Validade</th>
+	      	<th scope="col">Ações</th>
 	    </tr>
 	  </thead>
 	  <tbody>
-	    <tr>
-	      <th scope="row">1</th>
-	      <td>Mark</td>
-	      <td>Otto</td>
-	      <td>@mdo</td>
-	    </tr>
-	    <tr>
-	      <th scope="row">2</th>
-	      <td>Jacob</td>
-	      <td>Thornton</td>
-	      <td>@fat</td>
-	    </tr>
-	    <tr>
-	      <th scope="row">3</th>
-	      <td>Larry</td>
-	      <td>the Bird</td>
-	      <td>@twitter</td>
-	    </tr>
+	    <tr th:each="product: ${products}">
+		      <td th:text="${product.getQuantity}" class="align-middle col-md-2"></td>
+		      <td th:text="${product.getName}" class="align-middle col-md-2"></td>
+		      <td th:text="${product.getExpirationDate}" class="align-middle col-md-2"></td>
+		      <td class="align-middle col-md-2">
+		      	<a th:href="@{/product/update/{id}(id=${product.getId})}" class="btn btn-primary m-3">Editar</a>
+		      	<a th:href="@{/product/delete/{id}(id=${product.getId})}" class="btn btn-danger m-3">Deletar</a>
+		      </td>
+	   </tr>
 	  </tbody>
 	</table>
 
