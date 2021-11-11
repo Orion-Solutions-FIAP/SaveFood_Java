@@ -13,7 +13,7 @@
 	<header th:include = "_template :: headerLogo"></header>
 	
 	<div class="container d-flex justify-content-center align-items-center">
-		<form action ="/user" method="post" th:object="${user}" id="register">
+		<form th:action="@{/user}" method="post" th:object="${user}" id="register">
 			<h2>Cadastro do Usuário</h2>
 			<div class="mb-3">
 			    <label for="name" class="form-label">Nome</label>
