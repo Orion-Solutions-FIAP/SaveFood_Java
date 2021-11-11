@@ -53,7 +53,7 @@ public class ProductController {
 		product.setUser(usuario);
 		p.save(product);
 		redirect.addFlashAttribute("msg", "Cadastrado!!!");
-		return "redirect:register"; 
+		return "redirect:"; 
 	}
 
 	@GetMapping("/update/{id}")

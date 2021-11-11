@@ -1,10 +1,15 @@
-a{
-	text-decoration: none;	
+a {
+	text-decoration: none;
 }
+
 
 #login label{
 	font-size: 1.25rem;
 	margin-left: 1rem;
+}
+
+#login form{
+	width: 40%;
 }
 
 #buttons .buttonBack{
@@ -40,4 +45,32 @@ a{
 #barbecueImage{
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 	transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+
+@media screen and (max-width:1515px) {
+	html{
+		font-size: 14px;
+	}
+	
+	img{
+		width: 40%;
+	}
+}
+
+@media screen and (max-width:1000px){
+	html{
+		font-size: 25px;
+	}
+	#barbecueImage{
+		display: none;
+	}
+	
+	#login form{
+		position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    transform: translate(-50%,-50%);
+	}
+	
 }
