@@ -35,6 +35,12 @@
 	   </tr>
 	  </tbody>
 	</table>
+	
+	<nav aria-label="Page navigation example">
+	  <ul class="pagination" th:each="i : ${#numbers.sequence(1, products.getTotalPages)}">
+	    <li class="page-item"><a class="page-link" th:href="@{/product(id=${user.getId}, page=${i-1})}" th:text="${i}"></a></li>
+	  </ul>
+	</nav>
 
 	<div th:include = "_template :: scriptBootstrap"></div>
 
