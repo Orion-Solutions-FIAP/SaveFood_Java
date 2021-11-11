@@ -26,17 +26,11 @@ import br.com.fiap.savefood.repository.UserRepository;
 public class UserController {
 	
 	@Autowired
-
 	private UserRepository userRepository;
 	
 	@GetMapping
     public String save( User user ) {
         return "user/form";
-    }
-	
-	@GetMapping("/login")
-    public String login(User user) {
-        return "user/login";
     }
 	
 	@PostMapping
@@ -50,23 +44,6 @@ public class UserController {
         return "redirect:user/login";
         
     }
-
-	@PostMapping("/login")
-	public String login(User user, BindingResult result, RedirectAttributes redirect) throws Exception {
-		
-		Optional<User> login = userRepository.findByEmail(user.getEmail());
-		User userLogged = login.get();
-		
-		if(userLogged == null) {
-			throw new Exception("User not found");
-		}
-		
-		if(!userLogged.getPassword().equals(user.getPassword())) {
-			throw new Exception("Invalid user!");
-		}
-		
-		return "redirect:login";
-	}
 
 
 }
