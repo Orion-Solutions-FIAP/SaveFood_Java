@@ -20,7 +20,7 @@
 		  <div class="mb-3">
 			    <label for="date" class="form-label">Data de validade</label>
 			    <input type="date" class="form-control" id="date" name="date" th:field="*{expirationDate}">
-			   	<span th:errors="*{expirationDate}"></span>
+			   	<span th:if="${msg != null}" th:text="${msg}"></span>
 			    
 		  </div>
 		  <div class="mb-3">

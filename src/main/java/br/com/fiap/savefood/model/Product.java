@@ -39,7 +39,6 @@ public class Product {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "dt_expiration")
-	@FutureOrPresent
 	private Date expirationDate;
 	
 	@Column(name = "nr_quantity")
