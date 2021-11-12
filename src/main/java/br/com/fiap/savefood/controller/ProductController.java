@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,14 +53,12 @@ public class ProductController {
 		User user = (User) auth.getPrincipal();
 		List<Product> allProducts = p.findByUserAndStatus(user, ProductStatus.DISPONIVEL);
 		Date today = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
-		
 		for (Product product : allProducts) {
 			if(product.getExpirationDate().before(today)) {
 				product.setStatus(ProductStatus.VENCIDO);
 				p.save(product);
 			}
 		}
-		
 		return "redirect:/product";
 	}
 	
@@ -79,10 +78,16 @@ public class ProductController {
     }
 	
 	@PostMapping("/register")
-	public String save(@Valid Product product, BindingResult result, RedirectAttributes redirect, Authentication auth) {
+	public String save(@Valid Product product, BindingResult result, RedirectAttributes redirect, Authentication auth, Model model) {
 		if (result.hasErrors()) {
 			return "product/form";
 		}
+		Date today = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+		if(product.getExpirationDate().before(today)) {
+			model.addAttribute("msg","Não é possível cadastrar um produto vencido!");
+			return "product/form";
+		}
+		
 		product.setStatus(ProductStatus.DISPONIVEL);
 		User usuario = (User) auth.getPrincipal();
 		product.setUser(usuario);
@@ -101,10 +106,16 @@ public class ProductController {
     }
 	
 	@PostMapping("/update")
-	public String update(@Valid Product product, BindingResult result, RedirectAttributes redirect, Authentication auth) {
+	public String update(@Valid Product product, BindingResult result, RedirectAttributes redirect, Authentication auth, Model model) {
 		if (result.hasErrors()) {
 			return "product/updateForm";
 		}
+		Date today = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+		if(product.getExpirationDate().before(today)) {
+			model.addAttribute("msg","Não é possível cadastrar um produto vencido!");
+			return "product/form";
+		}
+		
 		product.setStatus(ProductStatus.DISPONIVEL);
 		User usuario = (User) auth.getPrincipal();
 		product.setUser(usuario);
@@ -132,8 +143,5 @@ public class ProductController {
 		return "redirect:/product";
 		
 	}
-	
-	
-	
 	
 }

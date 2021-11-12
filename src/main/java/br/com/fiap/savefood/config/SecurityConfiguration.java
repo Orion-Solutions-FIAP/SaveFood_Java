@@ -25,6 +25,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 		
+			.antMatchers("/h2-console/**")
+				.permitAll()
+				
 			.antMatchers("/product")
 				.authenticated()
 			
@@ -43,6 +46,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/")
+				
+			.and()
+				.csrf().ignoringAntMatchers("/h2-console/**")
+				
+	        .and()
+	        	.headers().frameOptions().sameOrigin()
+				
 			;
 	}
 	
