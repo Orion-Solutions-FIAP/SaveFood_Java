@@ -1,5 +1,9 @@
 package br.com.fiap.savefood.controller;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -34,6 +38,7 @@ public class ProductController {
 	@GetMapping
     public ModelAndView index(@RequestParam(defaultValue="0") int page, Authentication auth) {
 		User user = (User) auth.getPrincipal();
+		
 		Page<Product> products = p.findByUserAndStatusOrderByExpirationDateAsc(user, ProductStatus.DISPONIVEL, PageRequest.of(page, 5));
 		ModelAndView modelAndView = new ModelAndView("product/listAll");
 		modelAndView.addObject("products", products);
@@ -41,10 +46,26 @@ public class ProductController {
         return modelAndView;
 	}
 	
+	@GetMapping("/update")
+	public String updateProductsStatus(Authentication auth) {
+		User user = (User) auth.getPrincipal();
+		List<Product> allProducts = p.findByUserAndStatus(user, ProductStatus.DISPONIVEL);
+		Date today = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+		
+		for (Product product : allProducts) {
+			if(product.getExpirationDate().before(today)) {
+				product.setStatus(ProductStatus.VENCIDO);
+				p.save(product);
+			}
+		}
+		
+		return "redirect:/product";
+	}
+	
 	@GetMapping("/expired")
     public ModelAndView listExpiredProducts(@RequestParam(defaultValue="0") int page, Authentication auth) {
 		User user = (User) auth.getPrincipal();
-		Page<Product> products = p.findByUserAndStatusOrderByExpirationDateAsc(user, ProductStatus.VENCIDO, PageRequest.of(page, 5));
+		Page<Product> products = p.findByUserAndStatusOrderByExpirationDateDesc(user, ProductStatus.VENCIDO, PageRequest.of(page, 5));
 		ModelAndView modelAndView = new ModelAndView("product/listInvalid");
 		modelAndView.addObject("products", products);
 		

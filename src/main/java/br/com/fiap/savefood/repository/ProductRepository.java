@@ -13,8 +13,10 @@ import br.com.fiap.savefood.model.User;
 
 public interface ProductRepository extends JpaRepository<Product, Long>{
 	
-	public List<Product> findByUser(User user);
+	public List<Product> findByUserAndStatus(User user, ProductStatus status);
 	
 	public Page<Product> findByUserAndStatusOrderByExpirationDateAsc(User user, ProductStatus status, Pageable pageable);
+	
+	public Page<Product> findByUserAndStatusOrderByExpirationDateDesc(User user, ProductStatus status, Pageable pageable);
 
 }
