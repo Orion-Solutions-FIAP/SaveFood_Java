@@ -87,7 +87,7 @@ public class ProductController {
 		Product product = optional.get();
 		p.delete(product);
 		redirect.addFlashAttribute("msg", "Deletado!!!");
-		return "redirect:";
+		return "redirect:/product";
 	}
 	
 	
