@@ -1,5 +1,6 @@
 package br.com.fiap.savefood.controller;
 
+
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -87,17 +88,38 @@ public class ProductController {
 		product.setUser(usuario);
 		p.save(product);
 		redirect.addFlashAttribute("msg", "Cadastrado!!!");
-		return "redirect:register"; 
+		return "redirect:"; 
 	}
 
 	@GetMapping("/update/{id}")
-    public String update( Product product ) {
-        return "product/updateForm";
+    public ModelAndView update(@PathVariable Long id) {
+		Optional<Product> optional = p.findById(id);
+		Product product = optional.get();
+		ModelAndView modelAndView = new ModelAndView("product/updateForm");
+		modelAndView.addObject("product", product);
+        return modelAndView;
     }
 	
+	@PostMapping("/update")
+	public String update(@Valid Product product, BindingResult result, RedirectAttributes redirect, Authentication auth) {
+		if (result.hasErrors()) {
+			return "product/updateForm";
+		}
+		product.setStatus(ProductStatus.DISPONIVEL);
+		User usuario = (User) auth.getPrincipal();
+		product.setUser(usuario);
+		p.save(product);
+		redirect.addFlashAttribute("msg", "Atualizado!!!");
+		return "redirect:/product"; 
+	}
+	
 	@GetMapping("/delete/{id}")
-	public String delete(Product product) {
-		return "product/updateForm";
+	public String delete(@PathVariable Long id, RedirectAttributes redirect) {
+		Optional<Product> optional = p.findById(id);
+		Product product = optional.get();
+		p.delete(product);
+		redirect.addFlashAttribute("msg", "Deletado!!!");
+		return "redirect:/product";
 	}
 	
 	@GetMapping("/consume/{id}")

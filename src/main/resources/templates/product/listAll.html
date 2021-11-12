@@ -38,7 +38,7 @@
 			      <td th:text="${#dates.format(product.getExpirationDate, 'dd-MM-yyyy')}" class="align-middle col-md-2 borderStyle columnItem"></td>
 			      <td class="align-middle col-md-2 columnItem">
 	      			<div class="d-flex flex-row justify-content-center">
-	      				<a th:href="@{/product/update/{id}(id=${product.getId})}" class="d-flex justify-content-center editButton align-items-center"><img src="../../img/edit.png" class="iconEdit"></a>
+	      				<a th:href="${'/product/update/' + product.id}" class="d-flex justify-content-center editButton align-items-center"><img src="../../img/edit.png" class="iconEdit"></a>
 	      				<a th:href="@{/product/delete/{id}(id=${product.getId})}" class="d-flex justify-content-center deleteButton align-items-center"><img src="../../img/trash.png" class="iconDelete"></a>
 	      			</div>
 			      </td>
