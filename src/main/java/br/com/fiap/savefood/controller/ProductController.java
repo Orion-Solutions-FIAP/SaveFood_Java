@@ -1,5 +1,7 @@
 package br.com.fiap.savefood.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,13 +60,34 @@ public class ProductController {
 	}
 
 	@GetMapping("/update/{id}")
-    public String update( Product product ) {
-        return "product/updateForm";
+    public ModelAndView update(@PathVariable Long id) {
+		Optional<Product> optional = p.findById(id);
+		Product product = optional.get();
+		ModelAndView modelAndView = new ModelAndView("product/updateForm");
+		modelAndView.addObject("product", product);
+        return modelAndView;
     }
 	
+	@PostMapping("/update")
+	public String update(@Valid Product product, BindingResult result, RedirectAttributes redirect, Authentication auth) {
+		if (result.hasErrors()) {
+			return "product/updateForm";
+		}
+		product.setStatus(ProductStatus.DISPONIVEL);
+		User usuario = (User) auth.getPrincipal();
+		product.setUser(usuario);
+		p.save(product);
+		redirect.addFlashAttribute("msg", "Atualizado!!!");
+		return "redirect:/product"; 
+	}
+	
 	@GetMapping("/delete/{id}")
-	public String delete(Product product) {
-		return "product/updateForm";
+	public String delete(@PathVariable Long id, RedirectAttributes redirect) {
+		Optional<Product> optional = p.findById(id);
+		Product product = optional.get();
+		p.delete(product);
+		redirect.addFlashAttribute("msg", "Deletado!!!");
+		return "redirect:/product";
 	}
 	
 	

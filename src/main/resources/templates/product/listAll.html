@@ -29,8 +29,8 @@
 		      <td th:text="${product.getName}" class="align-middle col-md-2"></td>
 		      <td th:text="${product.getExpirationDate}" class="align-middle col-md-2"></td>
 		      <td class="align-middle col-md-2">
-		      	<a th:href="@{/product/update/{id}(id=${product.getId})}" class="btn btn-primary m-3">Editar</a>
-		      	<a th:href="@{/product/delete/{id}(id=${product.getId})}" class="btn btn-danger m-3">Deletar</a>
+		      	<a th:href="${'/product/update/' + product.id}" class="btn btn-primary m-3">Editar</a>
+		      	<a th:href="@{/product/delete/{id}(id=${product.id})}" class="btn btn-danger m-3">Deletar</a>
 		      </td>
 	   </tr>
 	  </tbody>
