@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head th:include = "_template :: head"></head>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Risque&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" th:href="@{~/css/listAll.css}">
 </head>
+
 <body>
+
+	<header th:include = "_template :: menuHeader"></header>
+		
+	<h1 class="text-center title">Produtos Vencidos</h1>
+	
+	<div class="content m-5">	
+		<table class="table table-borderless">
+		  <thead>
+		    <tr>
+		    	<th scope="col"></th>
+		    	<th scope="col" class="borderStyle columnTitle theadStyle">Qtd</th>
+		      	<th scope="col" class="borderStyle columnTitle theadStyle">Nome</th>
+		      	<th scope="col" class="borderStyle columnTitle theadStyle">Data de Validade</th>
+		      	<th scope="col" class="columnTitle theadStyle">Status</th>
+		      	<th scope="col"></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each="product: ${products}">
+		    	  <td class="align-middle col-md-1 columnItem flex-grow-1"></td>
+			      <td th:text="${product.getQuantity}" class="align-middle col-md-1 borderStyle columnItem"></td>
+			      <td th:text="${product.getName}" class="align-middle col-md-3 borderStyle columnItem"></td>
+			      <td th:text="${#dates.format(product.getExpirationDate, 'dd-MM-yyyy')}" class="align-middle col-md-2 borderStyle columnItem"></td>
+			      <td th:text="${product.getStatus}" class="align-middle col-md-2 columnItem statusStyle"></td>
+			      <td class="align-middle col-md-1 columnItem flex-grow-1"></td>   
+		   </tr>
+		  </tbody>
+		</table>
+		
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination d-flex flex-row justify-content-center">
+		    <li class="paginationStyle" th:each="i : ${#numbers.sequence(1, products.getTotalPages)}">
+		    	<a class="page-link paginationContent" th:href="@{/product(page=${i-1})}" th:text="${i}"></a>
+		    </li>
+		  </ul>
+		</nav>
+		
+	</div>
+
+	<div th:include = "_template :: scriptBootstrap"></div>
 
 </body>
 </html>
