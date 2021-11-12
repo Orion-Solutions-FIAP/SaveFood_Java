@@ -51,17 +51,14 @@ public class ProductController {
 	@GetMapping("/update")
 	public String updateProductsStatus(Authentication auth) {
 		User user = (User) auth.getPrincipal();
-		System.out.println("Entrei");
 		List<Product> allProducts = p.findByUserAndStatus(user, ProductStatus.DISPONIVEL);
 		Date today = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
-		
 		for (Product product : allProducts) {
 			if(product.getExpirationDate().before(today)) {
 				product.setStatus(ProductStatus.VENCIDO);
 				p.save(product);
 			}
 		}
-		
 		return "redirect:/product";
 	}
 	
