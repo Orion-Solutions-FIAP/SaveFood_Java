@@ -1,3 +1,54 @@
 .title{
 	font-family: Patrick Hand;
 }
+
+.checkButton{
+	width: 3rem;
+	height: 3rem;
+	background: #2E933C;
+	padding: 0.5rem;
+	border-radius:100% 100% 100% 100%;
+	
+	
+}
+
+.iconCheck{
+	width: 2rem;
+	height: 2rem;
+}
+
+.editButton{
+	width: 3rem;
+	height: 3rem;
+	background: #B18FCF;
+	padding: 0.5rem;
+	border-radius:100% 100% 100% 100%;
+	margin: 0.5rem;
+	
+	
+}
+
+.iconEdit{
+	width: 2rem;
+	height: 2rem;
+}
+
+.deleteButton{
+	width: 3rem;
+	height: 3rem;
+	background: #E94F37;
+	padding: 0.5rem;
+	border-radius:100% 100% 100% 100%;
+	margin: 0.5rem;
+	
+	
+}
+
+.iconDelete{
+	width: 2rem;
+	height: 2rem;
+}
+
+.borderStyle{
+	border-right: 3px solid black;
+}

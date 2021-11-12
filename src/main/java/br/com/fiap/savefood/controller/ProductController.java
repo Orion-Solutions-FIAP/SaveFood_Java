@@ -1,5 +1,7 @@
 package br.com.fiap.savefood.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,6 +69,16 @@ public class ProductController {
 		return "product/updateForm";
 	}
 	
+	@GetMapping("/consume/{id}")
+	public String consume(@PathVariable Long id) {
+		Optional<Product> product = p.findById(id);
+		if(product.isPresent()) {
+			product.get().setStatus(ProductStatus.CONSUMIDO);
+			p.save(product.get());
+		}
+		return "redirect:/product";
+		
+	}
 	
 	
 	
