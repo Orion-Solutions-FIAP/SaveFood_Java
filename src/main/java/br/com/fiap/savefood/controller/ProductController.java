@@ -50,6 +50,7 @@ public class ProductController {
 	@GetMapping("/update")
 	public String updateProductsStatus(Authentication auth) {
 		User user = (User) auth.getPrincipal();
+		System.out.println("Entrei");
 		List<Product> allProducts = p.findByUserAndStatus(user, ProductStatus.DISPONIVEL);
 		Date today = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
 		
@@ -132,8 +133,5 @@ public class ProductController {
 		return "redirect:/product";
 		
 	}
-	
-	
-	
 	
 }

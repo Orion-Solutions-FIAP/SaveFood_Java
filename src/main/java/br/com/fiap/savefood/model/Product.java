@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
@@ -38,6 +39,7 @@ public class Product {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "dt_expiration")
+	@FutureOrPresent
 	private Date expirationDate;
 	
 	@Column(name = "nr_quantity")
