@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org">
 <head th:include = "_template :: head"></head>
 <head>
 	<meta charset="UTF-8">
@@ -7,24 +7,27 @@
 	<link rel="stylesheet" type="text/css" th:href="@{~/css/productFormStyle.css}">
 </head>
 <body>
-	<header th:include = "_template :: headerLogo"></header>
+	<header th:include = "_template :: menuHeader"></header>
 	
 	<div class="d-flex justify-content-around p-4">
-		<form>
+		<form th:action="@{/product/update}" method="post" th:object="${product}">
 			<h2>Atualizar Produto</h2>
+			
+			<input type="hidden" th:field="*{id}" id="id" name="id">
+			
 			<div class="mb-3">
 			    <label for="name" class="form-label">Nome</label>
-			    <input type="text" class="form-control" id="name" name="name" >
+			    <input type="text" class="form-control" id="name" name="name" th:field="*{name}">
 			    
 		  </div>
 		  <div class="mb-3">
 			    <label for="date" class="form-label">Data de validade</label>
-			    <input type="date" class="form-control" id="date" name="date">
+			    <input type="date" class="form-control" id="date" name="date" th:field="*{expirationDate}">
 			    
 		  </div>
 		  <div class="mb-3">
 			    <label for="quantity" class="form-label">Quantidade</label>
-			    <input type="text" class="form-control" id="quantity" name="quantity">
+			    <input type="text" class="form-control" id="quantity" name="quantity" th:field="*{quantity}">
 			    
 		  </div>
 		  <div class="buttons d-flex flex-row justify-content-around">
