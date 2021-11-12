@@ -36,7 +36,7 @@
 	text-align: center;
 }
 
-thead{
+thead .theadStyle{
 	background: #C4C4C4;
 }
 
@@ -70,4 +70,17 @@ thead{
 	font-family: Patrick Hand;
 	font-size: 1.5rem;
 	
+}
+
+.paginationStyle{
+	margin: 0.3rem;
+}
+
+.paginationContent{
+	font-family: Risque;
+	color: #000000;
+	background: #C4C4C4;
+	font-size: 1.2rem;
+	font-weight: bold;
+	border: 2px solid #000000;	
 }
