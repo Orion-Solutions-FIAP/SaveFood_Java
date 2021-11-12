@@ -41,6 +41,16 @@ public class ProductController {
         return modelAndView;
 	}
 	
+	@GetMapping("/expired")
+    public ModelAndView listExpiredProducts(@RequestParam(defaultValue="0") int page, Authentication auth) {
+		User user = (User) auth.getPrincipal();
+		Page<Product> products = p.findByUserAndStatusOrderByExpirationDateAsc(user, ProductStatus.VENCIDO, PageRequest.of(page, 5));
+		ModelAndView modelAndView = new ModelAndView("product/listInvalid");
+		modelAndView.addObject("products", products);
+		
+        return modelAndView;
+	}
+	
 	@GetMapping("/register")
     public String save( Product product ) {
         return "product/form";

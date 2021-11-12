@@ -89,3 +89,8 @@ thead .theadStyle{
 	text-align: center;
 	padding: 0px;
 }
+
+.statusStyle{
+	color: #FF0000; 
+	font-weight: bold;
+}
