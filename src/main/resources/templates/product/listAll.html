@@ -15,28 +15,31 @@
 	<h1 class="text-center title">Lista de Produtos</h1>
 	
 	<div class="content m-5">	
-		<table class="table">
+		<table class="table table-borderless">
 		  <thead>
 		    <tr>
 		    	<th scope="col"></th>
-		    	<th scope="col" class="borderStyle">Qtd</th>
-		      	<th scope="col" class="borderStyle">Nome</th>
-		      	<th scope="col" class="borderStyle">Data de Validade</th>
-		      	<th scope="col">Ações</th>
+		    	<th scope="col" class="borderStyle columnTitle">Qtd</th>
+		      	<th scope="col" class="borderStyle columnTitle">Nome</th>
+		      	<th scope="col" class="borderStyle columnTitle">Data de Validade</th>
+		      	<th scope="col" class="columnTitle">Ações</th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		    <tr th:each="product: ${products}">
-		    	  <td class="align-middle col-md-2">
-		    	  	<a th:href="@{/product/consume/{id}(id=${product.getId})}"><div class="checkButton"><img src="../../img/check.png" class="iconCheck"></div></a>
+		    	  <td class="align-middle col-md-1 columnItem">
+		    	  	<div class="d-flex justify-content-center"><a th:href="@{/product/consume/{id}(id=${product.getId})}" class="d-flex checkButton align-items-center"><img src="../../img/check.png" class="iconCheck"></a></div>
 		    	  </td>
-			      <td th:text="${product.getQuantity}" class="align-middle col-md-2 borderStyle"></td>
-			      <td th:text="${product.getName}" class="align-middle col-md-2 borderStyle"></td>
-			      <td th:text="${#dates.format(product.getExpirationDate, 'dd-MM-yyyy')}" class="align-middle col-md-2 borderStyle"></td>
-			      <td class="align-middle col-md-2 d-flex flex-row">
-			      	<a th:href="@{/product/update/{id}(id=${product.getId})}"><div class="editButton"><img src="../../img/edit.png" class="iconEdit"></div></a>
-			      	<a th:href="@{/product/delete/{id}(id=${product.getId})}"><div class="deleteButton"><img src="../../img/trash.png" class="iconDelete"></div></a>
+			      <td th:text="${product.getQuantity}" class="align-middle col-md-1 borderStyle columnItem"></td>
+			      <td th:text="${product.getName}" class="align-middle col-md-3 borderStyle columnItem"></td>
+			      <td th:text="${#dates.format(product.getExpirationDate, 'dd-MM-yyyy')}" class="align-middle col-md-4 borderStyle columnItem"></td>
+			      <td class="align-middle col-md-2 d-flex flex-row columnItem">
+		      		<div class="d-flex justify-content-center">
+		      			<a th:href="@{/product/update/{id}(id=${product.getId})}" class="d-flex justify-content-center editButton align-items-center"><img src="../../img/edit.png" class="iconEdit"></a>
+		      			<a th:href="@{/product/delete/{id}(id=${product.getId})}" class="d-flex justify-content-center deleteButton align-items-center"><img src="../../img/trash.png" class="iconDelete"></a>
+		      		</div>
 			      </td>
+			     
 		   </tr>
 		  </tbody>
 		</table>

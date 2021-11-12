@@ -1,5 +1,6 @@
 .title{
 	font-family: Patrick Hand;
+	font-size: 3rem;
 }
 
 .checkButton{
@@ -28,6 +29,17 @@
 	
 }
 
+.columnTitle{
+	font-family: Patrick Hand;
+	font-size: 2rem;
+	font-weight: normal;
+	text-align: center;
+}
+
+thead{
+	background: #C4C4C4;
+}
+
 .iconEdit{
 	width: 2rem;
 	height: 2rem;
@@ -51,4 +63,11 @@
 
 .borderStyle{
 	border-right: 3px solid black;
+}
+
+.columnItem{
+	text-align: center;
+	font-family: Patrick Hand;
+	font-size: 1.5rem;
+	
 }
