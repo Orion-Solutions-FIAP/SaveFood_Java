@@ -40,7 +40,7 @@
 		
 		<nav aria-label="Page navigation example">
 		  <ul class="pagination d-flex flex-row justify-content-center">
-		    <li class="paginationStyle" th:each="i : ${#numbers.sequence(1, products.getTotalPages)}">
+		    <li class="paginationStyle" th:each="i : ${#numbers.sequence(1, products.getTotalPages)}" th:if="${i!=0}">
 		    	<a class="page-link paginationContent" th:href="@{/product(page=${i-1})}" th:text="${i}"></a>
 		    </li>
 		  </ul>
